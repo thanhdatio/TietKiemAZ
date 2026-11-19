@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ Chia Ngân Sách 50/30/20 & Quỹ Dự Phòng - Tiết Kiệm AZ</title>
+    <meta name="description" content="Phân bổ thu nhập hàng tháng theo quy tắc 50/30/20 tùy chỉnh và ước tính số tháng hoàn thành quỹ dự phòng khẩn cấp.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                        Tiết Kiệm <span class="text-brand-600">AZ</span>
+                    </span>
+                </a>
+                <span class="hidden sm:inline-block text-slate-300">/</span>
+                <span class="hidden sm:inline-block text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    Công cụ Tài chính
+                </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="../cam-nang/tiet-kiem-tien.html" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors inline-flex items-center gap-1.5">
+                    <i data-lucide="book-open" class="w-4 h-4 text-brand-600"></i>
+                    <span>Sổ tay Quản lý tiền</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="bg-white border-b border-slate-200 py-10 lg:py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-3">
+                    <i data-lucide="pie-chart" class="w-3.5 h-3.5"></i>
+                    <span>Tiện ích phân bổ ngân sách & mục tiêu quỹ dự phòng</span>
+                </div>
+                <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                    Chia Ngân Sách 50 / 30 / 20 & Lộ Trình Quỹ Dự Phòng
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Nhập thu nhập ròng hàng tháng để xem hạn mức gợi ý cho từng nhóm chi tiêu, điều chỉnh tỷ lệ linh hoạt theo thực tế gia đình và tính nhanh thời gian hoàn thành quỹ dự phòng.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN WORKSPACE -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT: INPUT & CONTROLS (6 cols) -->
+            <div class="lg:col-span-6 space-y-6">
+
+                <!-- Income & Ratios Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-5">
+                    <div>
+                        <label for="income-input" class="block font-heading text-sm font-bold text-slate-900 mb-1.5">
+                            Thu nhập ròng hàng tháng (VNĐ)
+                        </label>
+                        <input type="number" id="income-input" min="0" step="500000" value="25000000"
+                               class="w-full px-4 py-2.5 text-base font-bold text-slate-900 rounded-xl border border-slate-300 focus:outline-none focus:border-brand-500">
+                        <div class="flex flex-wrap gap-2 mt-2.5">
+                            <button type="button" data-income="15000000" class="preset-income px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-medium text-slate-600 cursor-pointer">15 triệu</button>
+                            <button type="button" data-income="25000000" class="preset-income px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-medium text-slate-600 cursor-pointer">25 triệu</button>
+                            <button type="button" data-income="40000000" class="preset-income px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-medium text-slate-600 cursor-pointer">40 triệu</button>
+                            <button type="button" data-income="60000000" class="preset-income px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 text-xs font-medium text-slate-600 cursor-pointer">60 triệu</button>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-slate-100 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="font-heading text-sm font-bold text-slate-900">Tỷ lệ phân bổ (%)</span>
+                            <button type="button" id="reset-ratio-btn" class="text-xs font-medium text-brand-600 hover:underline cursor-pointer">
+                                Chuẩn 50 / 30 / 20
+                            </button>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-700">1. Nhu cầu thiết yếu</span>
+                                <span id="ratio-needs-label" class="font-bold text-emerald-700">50%</span>
+                            </div>
+                            <input type="range" id="ratio-needs" min="20" max="80" step="5" value="50"
+                                   class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-600">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-medium mb-1">
+                                <span class="text-slate-700">2. Mong muốn cá nhân</span>
+                                <span id="ratio-wants-label" class="font-bold text-amber-700">30%</span>
+                            </div>
+                            <input type="range" id="ratio-wants" min="0" max="60" step="5" value="30"
+                                   class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                        </div>
+
+                        <div class="flex items-center justify-between bg-blue-50/80 border border-blue-200/70 rounded-xl px-3.5 py-2.5 text-xs">
+                            <span class="font-semibold text-blue-900">3. Tiết kiệm & Tích lũy (Phần còn lại):</span>
+                            <span id="ratio-savings-label" class="font-heading font-extrabold text-sm text-blue-700">20%</span>
+                        </div>
+                        <div id="ratio-warning" class="hidden text-xs font-medium text-rose-600">
+                            Tổng Nhu cầu + Mong muốn đang vượt 100% thu nhập. Hãy giảm bớt một trong hai thanh trượt.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Fund Estimator Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h2 class="font-heading text-base font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-brand-600"></i>
+                        <span>Ước tính mục tiêu Quỹ dự phòng</span>
+                    </h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="months-target" class="block text-xs font-medium text-slate-600 mb-1">Số tháng dự phòng mục tiêu</label>
+                            <select id="months-target" class="w-full px-3 py-2 text-sm font-semibold rounded-lg border border-slate-300 bg-white focus:outline-none focus:border-brand-500">
+                                <option value="3">3 tháng chi phí thiết yếu</option>
+                                <option value="6" selected>6 tháng chi phí thiết yếu</option>
+                                <option value="9">9 tháng chi phí thiết yếu</option>
+                                <option value="12">12 tháng chi phí thiết yếu</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="current-fund" class="block text-xs font-medium text-slate-600 mb-1">Đã có sẵn quỹ dự phòng (VNĐ)</label>
+                            <input type="number" id="current-fund" min="0" step="1000000" value="10000000"
+                                   class="w-full px-3 py-2 text-sm font-semibold rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT: RESULTS & BREAKDOWN (6 cols) -->
+            <div class="lg:col-span-6 space-y-6">
+
+                <!-- 3 Buckets Card -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl space-y-5">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Phân bổ hàng tháng</span>
+                        <span id="total-income-badge" class="text-xs font-bold text-brand-400">25.000.000 đ</span>
+                    </div>
+
+                    <!-- Visual Stacked Bar -->
+                    <div class="w-full h-3.5 rounded-full overflow-hidden flex bg-slate-800">
+                        <div id="bar-needs" class="bg-emerald-500 transition-all duration-300" style="width: 50%"></div>
+                        <div id="bar-wants" class="bg-amber-400 transition-all duration-300" style="width: 30%"></div>
+                        <div id="bar-savings" class="bg-blue-400 transition-all duration-300" style="width: 20%"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold mb-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                                <span>Nhu cầu (<span id="card-pct-needs">50%</span>)</span>
+                            </div>
+                            <div id="amt-needs" class="font-heading text-lg font-extrabold text-white">12.500.000 đ</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="flex items-center gap-1.5 text-xs text-amber-300 font-semibold mb-1">
+                                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                                <span>Mong muốn (<span id="card-pct-wants">30%</span>)</span>
+                            </div>
+                            <div id="amt-wants" class="font-heading text-lg font-extrabold text-white">7.500.000 đ</div>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="flex items-center gap-1.5 text-xs text-blue-300 font-semibold mb-1">
+                                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                                <span>Tiết kiệm (<span id="card-pct-savings">20%</span>)</span>
+                            </div>
+                            <div id="amt-savings" class="font-heading text-lg font-extrabold text-white">5.000.000 đ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Fund Result Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="font-heading text-base font-bold text-slate-900">Kết quả lộ trình Quỹ dự phòng</h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                            <span class="text-xs text-slate-500 block">Mục tiêu quỹ dự phòng</span>
+                            <span id="target-fund-display" class="font-heading text-xl font-extrabold text-slate-900 mt-1 block">75.000.000 đ</span>
+                            <span id="target-fund-note" class="text-[11px] text-slate-500 mt-0.5 block">6 tháng × 12.500.000 đ thiết yếu</span>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-brand-50/70 border border-brand-200/80">
+                            <span class="text-xs text-brand-800 block">Thời gian hoàn thành phần còn thiếu</span>
+                            <span id="eta-months-display" class="font-heading text-xl font-extrabold text-brand-700 mt-1 block">13 tháng</span>
+                            <span id="remaining-fund-note" class="text-[11px] text-brand-800/80 mt-0.5 block">Còn thiếu: 65.000.000 đ</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>© 2026 Tiết Kiệm AZ • Công cụ Chia Ngân Sách 50/30/20 & Quỹ Dự Phòng</div>
+            <div class="flex gap-5">
+                <a href="../index.html" class="hover:text-brand-600 font-medium">Trang chủ</a>
+                <a href="../cam-nang/tiet-kiem-tien.html" class="hover:text-brand-600 font-medium">Sổ tay Quản lý tiền</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            const incomeInput = document.getElementById('income-input');
+            const needsSlider = document.getElementById('ratio-needs');
+            const wantsSlider = document.getElementById('ratio-wants');
+            const monthsSelect = document.getElementById('months-target');
+            const currentFundInput = document.getElementById('current-fund');
+
+            function formatVND(num) {
+                return Math.round(Math.max(0, num)).toLocaleString('vi-VN') + ' đ';
+            }
+
+            function updateBudget() {
+                const income = Math.max(0, parseFloat(incomeInput.value) || 0);
+                let needsPct = parseInt(needsSlider.value, 10) || 0;
+                let wantsPct = parseInt(wantsSlider.value, 10) || 0;
+
+                const warningEl = document.getElementById('ratio-warning');
+                let savingsPct = 100 - needsPct - wantsPct;
+
+                if (savingsPct < 0) {
+                    warningEl.classList.remove('hidden');
+                    savingsPct = 0;
+                } else {
+                    warningEl.classList.add('hidden');
+                }
+
+                document.getElementById('ratio-needs-label').textContent = needsPct + '%';
+                document.getElementById('ratio-wants-label').textContent = wantsPct + '%';
+                document.getElementById('ratio-savings-label').textContent = savingsPct + '%';
+
+                document.getElementById('card-pct-needs').textContent = needsPct + '%';
+                document.getElementById('card-pct-wants').textContent = wantsPct + '%';
+                document.getElementById('card-pct-savings').textContent = savingsPct + '%';
+
+                const totalBar = Math.max(100, needsPct + wantsPct + savingsPct);
+                document.getElementById('bar-needs').style.width = ((needsPct / totalBar) * 100) + '%';
+                document.getElementById('bar-wants').style.width = ((wantsPct / totalBar) * 100) + '%';
+                document.getElementById('bar-savings').style.width = ((savingsPct / totalBar) * 100) + '%';
+
+                const needsAmt = (income * needsPct) / 100;
+                const wantsAmt = (income * wantsPct) / 100;
+                const savingsAmt = (income * savingsPct) / 100;
+
+                document.getElementById('total-income-badge').textContent = formatVND(income);
+                document.getElementById('amt-needs').textContent = formatVND(needsAmt);
+                document.getElementById('amt-wants').textContent = formatVND(wantsAmt);
+                document.getElementById('amt-savings').textContent = formatVND(savingsAmt);
+
+                // Tính quỹ dự phòng dựa trên chi phí thiết yếu ước tính
+                const targetMonths = parseInt(monthsSelect.value, 10) || 6;
+                const currentFund = Math.max(0, parseFloat(currentFundInput.value) || 0);
+                const targetFund = needsAmt * targetMonths;
+                const remaining = Math.max(0, targetFund - currentFund);
+
+                document.getElementById('target-fund-display').textContent = formatVND(targetFund);
+                document.getElementById('target-fund-note').textContent = `${targetMonths} tháng × ${formatVND(needsAmt)} thiết yếu`;
+                document.getElementById('remaining-fund-note').textContent = `Còn thiếu: ${formatVND(remaining)}`;
+
+                const etaEl = document.getElementById('eta-months-display');
+                if (remaining <= 0) {
+                    etaEl.textContent = 'Đã đạt mục tiêu!';
+                } else if (savingsAmt > 0) {
+                    const estMonths = Math.ceil(remaining / savingsAmt);
+                    etaEl.textContent = `~${estMonths} tháng`;
+                } else {
+                    etaEl.textContent = 'Chưa có khoản tiết kiệm';
+                }
+            }
+
+            document.querySelectorAll('.preset-income').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    incomeInput.value = btn.getAttribute('data-income');
+                    updateBudget();
+                });
+            });
+
+            document.getElementById('reset-ratio-btn').addEventListener('click', () => {
+                needsSlider.value = 50;
+                wantsSlider.value = 30;
+                updateBudget();
+            });
+
+            [incomeInput, needsSlider, wantsSlider, monthsSelect, currentFundInput].forEach(el => {
+                el.addEventListener('input', updateBudget);
+                el.addEventListener('change', updateBudget);
+            });
+
+            updateBudget();
+        });
+    </script>
+</body>
+</html>

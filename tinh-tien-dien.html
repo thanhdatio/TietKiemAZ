@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Cụ Tính Tiền Điện Thiết Bị & Bậc Thang - Tiết Kiệm AZ</title>
+    <meta name="description" content="Ước tính chính xác lượng điện tiêu thụ (kWh) của từng thiết bị gia đình và tính tiền điện sinh hoạt theo 6 bậc thang EVN kèm thuế VAT.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                        Tiết Kiệm <span class="text-brand-600">AZ</span>
+                    </span>
+                </a>
+                <span class="hidden sm:inline-block text-slate-300">/</span>
+                <span class="hidden sm:inline-block text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    Công cụ tính toán
+                </span>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="../cam-nang/tiet-kiem-dien.html" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors inline-flex items-center gap-1.5">
+                    <i data-lucide="book-open" class="w-4 h-4 text-brand-600"></i>
+                    <span>Đọc Cẩm nang Giảm 30% Tiền Điện</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="bg-white border-b border-slate-200 py-10 lg:py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-3">
+                    <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                    <span>Tiện ích ước tính tiêu thụ điện & biểu giá sinh hoạt</span>
+                </div>
+                <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                    Tính Tiền Điện Thiết Bị & Lũy Tiến Bậc Thang
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Thêm các thiết bị điện đang sử dụng trong gia đình để xem thiết bị nào đang chiếm tỷ trọng hóa đơn lớn nhất và ước tính tổng tiền điện hàng tháng (đã bao gồm thuế VAT).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CALCULATOR WORKSPACE -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+            <!-- LEFT COLUMN: DANH SÁCH THIẾT BỊ (7 cols) -->
+            <div class="lg:col-span-7 space-y-6">
+
+                <!-- Quick Presets & Add Form -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="font-heading text-base font-bold text-slate-900 flex items-center gap-2">
+                            <i data-lucide="plus-circle" class="w-4 h-4 text-brand-600"></i>
+                            <span>Thêm nhanh thiết bị phổ biến</span>
+                        </h2>
+                        <span class="text-xs text-slate-400">Bấm để thêm vào bảng</span>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2" id="preset-buttons">
+                        <button type="button" data-name="Điều hòa 9000 BTU (Inverter)" data-watt="800" data-hours="8" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Điều hòa (800W)
+                        </button>
+                        <button type="button" data-name="Tủ lạnh Inverter (chạy 24/7)" data-watt="65" data-hours="24" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Tủ lạnh (65W)
+                        </button>
+                        <button type="button" data-name="Bình nóng lạnh 2500W" data-watt="2500" data-hours="0.5" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Bình nóng lạnh (2500W)
+                        </button>
+                        <button type="button" data-name="Nồi cơm điện" data-watt="700" data-hours="1" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Nồi cơm điện (700W)
+                        </button>
+                        <button type="button" data-name="Bếp từ đôi (nấu trung bình)" data-watt="2000" data-hours="1" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Bếp từ (2000W)
+                        </button>
+                        <button type="button" data-name="Quạt điện đứng / trần" data-watt="55" data-hours="10" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Quạt điện (55W)
+                        </button>
+                        <button type="button" data-name="Smart TV 55 inch" data-watt="120" data-hours="4" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Smart TV (120W)
+                        </button>
+                        <button type="button" data-name="Máy tính / Laptop làm việc" data-watt="150" data-hours="8" class="preset-btn px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-medium text-slate-700 transition-colors">
+                            + Máy tính (150W)
+                        </button>
+                    </div>
+
+                    <!-- Custom Add Form -->
+                    <form id="add-device-form" class="mt-5 pt-5 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-12 gap-3">
+                        <div class="sm:col-span-5">
+                            <label for="input-name" class="block text-xs font-medium text-slate-500 mb-1">Tên thiết bị</label>
+                            <input type="text" id="input-name" placeholder="VD: Máy giặt cửa ngang" required
+                                   class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-3">
+                            <label for="input-watt" class="block text-xs font-medium text-slate-500 mb-1">Công suất (W)</label>
+                            <input type="number" id="input-watt" min="1" max="50000" placeholder="VD: 500" required
+                                   class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="input-hours" class="block text-xs font-medium text-slate-500 mb-1">Giờ/ngày</label>
+                            <input type="number" id="input-hours" min="0.1" max="24" step="0.1" placeholder="1" required
+                                   class="w-full px-3 py-2 text-sm rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2 flex items-end">
+                            <button type="submit" id="add-device-btn" class="w-full py-2 px-3 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold transition-colors cursor-pointer">
+                                Thêm
+                            </button>
+                        </div>
+                    </form>
+                    <div id="feedback-msg" class="hidden mt-2.5 text-xs font-medium text-brand-700"></div>
+                </div>
+
+                <!-- Active Devices Table -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+                        <div>
+                            <h2 class="font-heading text-lg font-bold text-slate-900">Bảng Kê Thiết Bị Gia Đình</h2>
+                            <p class="text-xs text-slate-500 mt-0.5">Chỉnh trực tiếp số lượng hoặc số giờ dùng để thấy biến động tức thì.</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <label class="text-xs font-medium text-slate-600 flex items-center gap-1.5">
+                                <span>Số ngày/tháng:</span>
+                                <input type="number" id="days-in-month" value="30" min="1" max="31"
+                                       class="w-14 px-2 py-1 text-center text-xs font-bold border border-slate-300 rounded-md focus:outline-none focus:border-brand-500">
+                            </label>
+                            <button type="button" id="reset-sample-btn" class="text-xs font-medium text-slate-500 hover:text-brand-600 underline cursor-pointer">
+                                Nạp mẫu mặc định
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-xs uppercase text-slate-400 bg-slate-50">
+                                    <th class="py-2.5 px-3 font-semibold">Thiết bị</th>
+                                    <th class="py-2.5 px-2 font-semibold text-center">SL</th>
+                                    <th class="py-2.5 px-2 font-semibold text-right">Công suất</th>
+                                    <th class="py-2.5 px-2 font-semibold text-right">Giờ/ngày</th>
+                                    <th class="py-2.5 px-3 font-semibold text-right">kWh/tháng</th>
+                                    <th class="py-2.5 px-2 text-center"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="device-list-body" class="divide-y divide-slate-100">
+                                <!-- Rendered by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="empty-state" class="hidden py-10 text-center text-sm text-slate-400">
+                        Chưa có thiết bị nào trong danh sách. Hãy bấm vào các nút gợi ý phía trên hoặc thêm mới.
+                    </div>
+                </div>
+
+                <!-- Direct kWh Quick Override Box -->
+                <div class="bg-slate-100/80 rounded-2xl border border-slate-200 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <div class="font-heading font-bold text-sm text-slate-800">Đã biết sẵn tổng số kWh trên công tơ?</div>
+                        <p class="text-xs text-slate-500 mt-0.5">Nhập nhanh tổng kWh để tra cứu ngay tiền điện bậc thang mà không cần lập bảng thiết bị.</p>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <input type="number" id="direct-kwh-input" min="0" placeholder="VD: 350"
+                               class="w-28 px-3 py-2 text-sm bg-white rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500">
+                        <button type="button" id="apply-direct-kwh" class="px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition-colors cursor-pointer">
+                            Tính nhanh
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: KẾT QUẢ & BẬC THANG EVN (5 cols) -->
+            <div class="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+
+                <!-- Summary Card -->
+                <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-7 shadow-xl">
+                    <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                        <span>TỔNG SẢN LƯỢNG ƯỚC TÍNH</span>
+                        <span id="summary-kwh-badge" class="px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-400 font-bold">0 kWh</span>
+                    </div>
+
+                    <div class="my-3">
+                        <div class="text-xs text-slate-400 mb-1">Tổng tiền thanh toán (đã gồm VAT <span id="vat-label">8%</span>)</div>
+                        <div id="total-bill-display" class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-400 tracking-tight">
+                            0 đ
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 pt-4 mt-4 border-t border-slate-800 text-xs">
+                        <div>
+                            <span class="text-slate-400 block">Tiền điện trước thuế:</span>
+                            <span id="subtotal-display" class="font-semibold text-white text-sm mt-0.5 block">0 đ</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Thuế VAT (<select id="vat-select" class="bg-slate-800 text-brand-400 font-semibold rounded px-1 py-0.5 border border-slate-700 focus:outline-none"><option value="0.08" selected>8%</option><option value="0.10">10%</option></select>):</span>
+                            <span id="vat-amount-display" class="font-semibold text-white text-sm mt-0.5 block">0 đ</span>
+                        </div>
+                    </div>
+
+                    <!-- Top Consumer Insight -->
+                    <div id="top-consumer-box" class="mt-5 p-3.5 rounded-xl bg-slate-800/90 border border-slate-700/80 text-xs">
+                        <div class="text-slate-400 mb-1">Thiết bị tiêu thụ nhiều nhất:</div>
+                        <div id="top-consumer-text" class="font-semibold text-amber-400">Chưa có dữ liệu</div>
+                    </div>
+                </div>
+
+                <!-- Tiered Breakdown Card -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="font-heading text-base font-bold text-slate-900">Chi tiết 6 bậc thang sinh hoạt</h3>
+                        <button type="button" id="toggle-rate-editor" class="text-xs font-medium text-brand-600 hover:underline cursor-pointer">
+                            Sửa đơn giá
+                        </button>
+                    </div>
+
+                    <!-- Tier Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-400">
+                                    <th class="py-2 font-semibold">Bậc thang</th>
+                                    <th class="py-2 font-semibold text-right">Đơn giá</th>
+                                    <th class="py-2 font-semibold text-right">Dùng (kWh)</th>
+                                    <th class="py-2 font-semibold text-right">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tier-breakdown-body" class="divide-y divide-slate-100">
+                                <!-- Rendered by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Collapsible Custom Tariff Editor -->
+                    <div id="rate-editor-panel" class="hidden mt-4 pt-4 border-t border-slate-200 space-y-2">
+                        <div class="text-xs font-semibold text-slate-700 mb-2">Tùy chỉnh đơn giá từng bậc (đ/kWh - chưa VAT):</div>
+                        <div id="rate-inputs-container" class="grid grid-cols-2 gap-2 text-xs"></div>
+                        <div class="flex justify-end gap-2 pt-2">
+                            <button type="button" id="reset-rates-btn" class="px-2.5 py-1 rounded bg-slate-100 text-slate-600 hover:bg-slate-200 text-xs font-medium cursor-pointer">
+                                Khôi phục mặc định
+                            </button>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-slate-400 mt-4 leading-relaxed">
+                        * Lưu ý: Số liệu mang tính chất ước tính dựa trên công suất định mức và thời gian vận hành. Thiết bị Inverter thực tế sẽ giảm công suất máy nén khi đạt nhiệt độ cài đặt.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>© 2026 Tiết Kiệm AZ • Công cụ tính tiền điện thiết bị & bậc thang</div>
+            <div class="flex gap-5">
+                <a href="../index.html" class="hover:text-brand-600 font-medium">Trang chủ</a>
+                <a href="../cam-nang/tiet-kiem-dien.html" class="hover:text-brand-600 font-medium">Cẩm nang tiết kiệm điện</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            const DEFAULT_TIERS = [
+                { name: 'Bậc 1 (0 - 50 kWh)', limit: 50, rate: 1893 },
+                { name: 'Bậc 2 (51 - 100 kWh)', limit: 50, rate: 1956 },
+                { name: 'Bậc 3 (101 - 200 kWh)', limit: 100, rate: 2271 },
+                { name: 'Bậc 4 (201 - 300 kWh)', limit: 100, rate: 2860 },
+                { name: 'Bậc 5 (301 - 400 kWh)', limit: 100, rate: 3197 },
+                { name: 'Bậc 6 (Từ 401 kWh trở lên)', limit: Infinity, rate: 3302 }
+            ];
+
+            const SAMPLE_DEVICES = [
+                { id: 1, name: 'Điều hòa phòng ngủ (Inverter)', qty: 1, watt: 800, hours: 8 },
+                { id: 2, name: 'Tủ lạnh gia đình (24/7)', qty: 1, watt: 65, hours: 24 },
+                { id: 3, name: 'Bình nóng lạnh 2500W', qty: 1, watt: 2500, hours: 0.5 },
+                { id: 4, name: 'Nồi cơm điện', qty: 1, watt: 700, hours: 1 },
+                { id: 5, name: 'Đèn LED & Quạt sinh hoạt', qty: 3, watt: 45, hours: 6 }
+            ];
+
+            const STORAGE_DEVICES_KEY = 'tietkiemaz_electric_devices_v1';
+            let memoryStorage = {};
+            let devices = [];
+            let tiers = DEFAULT_TIERS.map(t => ({ ...t }));
+            let manualKwhOverride = null;
+
+            const deviceListBody = document.getElementById('device-list-body');
+            const emptyState = document.getElementById('empty-state');
+            const daysInput = document.getElementById('days-in-month');
+            const vatSelect = document.getElementById('vat-select');
+            const vatLabel = document.getElementById('vat-label');
+            const feedbackMsg = document.getElementById('feedback-msg');
+
+            function showFeedback(text) {
+                if (!feedbackMsg) return;
+                feedbackMsg.textContent = text;
+                feedbackMsg.classList.remove('hidden');
+                clearTimeout(showFeedback._timer);
+                showFeedback._timer = setTimeout(() => {
+                    feedbackMsg.classList.add('hidden');
+                }, 2500);
+            }
+
+            function formatVND(num) {
+                return Math.round(num).toLocaleString('vi-VN') + ' đ';
+            }
+
+            function escapeHtml(str) {
+                return String(str).replace(/[&<>"']/g, (m) => ({
+                    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+                }[m]));
+            }
+
+            function readStorage() {
+                try {
+                    return window.localStorage.getItem(STORAGE_DEVICES_KEY);
+                } catch (e) {
+                    return memoryStorage[STORAGE_DEVICES_KEY] || null;
+                }
+            }
+
+            function writeStorage(val) {
+                memoryStorage[STORAGE_DEVICES_KEY] = val;
+                try {
+                    window.localStorage.setItem(STORAGE_DEVICES_KEY, val);
+                } catch (e) {
+                    // Fallback to in-memory storage if blocked by browser security policy
+                }
+            }
+
+            function loadDevices() {
+                const saved = readStorage();
+                if (saved) {
+                    try {
+                        const parsed = JSON.parse(saved);
+                        if (Array.isArray(parsed)) {
+                            devices = parsed;
+                            return;
+                        }
+                    } catch (e) {}
+                }
+                devices = SAMPLE_DEVICES.map(d => ({ ...d }));
+            }
+
+            function saveDevices() {
+                writeStorage(JSON.stringify(devices));
+            }
+
+            function recalculateAll() {
+                const days = Math.max(1, Math.min(31, parseInt(daysInput.value, 10) || 30));
+                const vatRate = parseFloat(vatSelect.value) || 0.08;
+                vatLabel.textContent = Math.round(vatRate * 100) + '%';
+
+                let totalKwh = 0;
+                let topDev = null;
+                let topKwh = 0;
+
+                devices.forEach(dev => {
+                    const kwh = (dev.watt * dev.qty * dev.hours * days) / 1000;
+                    totalKwh += kwh;
+                    if (kwh > topKwh) {
+                        topKwh = kwh;
+                        topDev = dev;
+                    }
+                });
+
+                if (manualKwhOverride !== null) {
+                    totalKwh = manualKwhOverride;
+                }
+
+                let remainingKwh = totalKwh;
+                let subtotal = 0;
+                const tierBody = document.getElementById('tier-breakdown-body');
+                tierBody.innerHTML = '';
+
+                tiers.forEach((tier) => {
+                    const usedInTier = Math.max(0, Math.min(remainingKwh, tier.limit));
+                    const costInTier = usedInTier * tier.rate;
+                    subtotal += costInTier;
+                    remainingKwh -= usedInTier;
+
+                    const isActive = usedInTier > 0;
+                    const tr = document.createElement('tr');
+                    tr.className = isActive ? 'bg-brand-50/40 font-medium text-slate-800' : 'text-slate-400';
+                    tr.innerHTML = `
+                        <td class="py-2 pr-2">${tier.name}</td>
+                        <td class="py-2 px-1 text-right">${tier.rate.toLocaleString('vi-VN')}đ</td>
+                        <td class="py-2 px-1 text-right">${usedInTier.toFixed(1)}</td>
+                        <td class="py-2 pl-1 text-right font-semibold ${isActive ? 'text-slate-900' : ''}">${Math.round(costInTier).toLocaleString('vi-VN')}đ</td>
+                    `;
+                    tierBody.appendChild(tr);
+                });
+
+                const vatAmount = subtotal * vatRate;
+                const grandTotal = subtotal + vatAmount;
+
+                document.getElementById('summary-kwh-badge').textContent = `${totalKwh.toFixed(1)} kWh / tháng`;
+                document.getElementById('subtotal-display').textContent = formatVND(subtotal);
+                document.getElementById('vat-amount-display').textContent = formatVND(vatAmount);
+                document.getElementById('total-bill-display').textContent = formatVND(grandTotal);
+
+                const topConsumerText = document.getElementById('top-consumer-text');
+                if (manualKwhOverride !== null) {
+                    topConsumerText.textContent = `Đang tính nhanh theo mức nhập tay: ${manualKwhOverride} kWh`;
+                } else if (topDev && totalKwh > 0) {
+                    const share = Math.round((topKwh / totalKwh) * 100);
+                    topConsumerText.textContent = `${topDev.name} — ${topKwh.toFixed(1)} kWh (${share}% tổng điện)`;
+                } else {
+                    topConsumerText.textContent = 'Chưa có thiết bị nào trong danh sách';
+                }
+            }
+
+            function renderDevices() {
+                const days = Math.max(1, Math.min(31, parseInt(daysInput.value, 10) || 30));
+                deviceListBody.innerHTML = '';
+
+                if (devices.length === 0) {
+                    emptyState.classList.remove('hidden');
+                } else {
+                    emptyState.classList.add('hidden');
+                }
+
+                devices.forEach((dev, index) => {
+                    const monthlyKwh = (dev.watt * dev.qty * dev.hours * days) / 1000;
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-slate-50/80 transition-colors';
+                    tr.innerHTML = `
+                        <td class="py-3 px-3 font-medium text-slate-800">${escapeHtml(dev.name)}</td>
+                        <td class="py-3 px-2 text-center">
+                            <input type="number" min="1" max="50" value="${dev.qty}" data-idx="${index}" data-field="qty"
+                                   class="dev-edit w-12 px-1.5 py-1 text-center text-xs border border-slate-200 rounded focus:outline-none focus:border-brand-500">
+                        </td>
+                        <td class="py-3 px-2 text-right text-slate-600">${Number(dev.watt).toLocaleString('vi-VN')}W</td>
+                        <td class="py-3 px-2 text-right">
+                            <input type="number" min="0.1" max="24" step="0.1" value="${dev.hours}" data-idx="${index}" data-field="hours"
+                                   class="dev-edit w-14 px-1.5 py-1 text-right text-xs border border-slate-200 rounded focus:outline-none focus:border-brand-500">
+                        </td>
+                        <td class="py-3 px-3 text-right font-semibold text-brand-700">${monthlyKwh.toFixed(1)}</td>
+                        <td class="py-3 px-2 text-center">
+                            <button type="button" data-idx="${index}" class="delete-dev text-slate-400 hover:text-rose-600 p-1 cursor-pointer" title="Xóa thiết bị">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </td>
+                    `;
+                    deviceListBody.appendChild(tr);
+                });
+
+                if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                    window.lucide.createIcons();
+                }
+
+                document.querySelectorAll('.dev-edit').forEach(input => {
+                    input.addEventListener('change', (e) => {
+                        manualKwhOverride = null;
+                        const idx = parseInt(e.target.getAttribute('data-idx'), 10);
+                        const field = e.target.getAttribute('data-field');
+                        const val = parseFloat(e.target.value);
+                        if (!isNaN(val) && val > 0 && devices[idx]) {
+                            devices[idx][field] = field === 'qty' ? Math.max(1, Math.round(val)) : Math.min(24, val);
+                            saveDevices();
+                            renderDevices();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.delete-dev').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        manualKwhOverride = null;
+                        const idx = parseInt(e.currentTarget.getAttribute('data-idx'), 10);
+                        devices.splice(idx, 1);
+                        saveDevices();
+                        renderDevices();
+                        showFeedback('Đã xóa thiết bị khỏi danh sách.');
+                    });
+                });
+
+                recalculateAll();
+            }
+
+            function addDeviceItem(name, watt, hours, qty = 1) {
+                manualKwhOverride = null;
+                devices.push({
+                    id: Date.now() + Math.floor(Math.random() * 10000),
+                    name: String(name).trim(),
+                    qty: Math.max(1, parseInt(qty, 10) || 1),
+                    watt: parseFloat(watt),
+                    hours: Math.min(24, Math.max(0.1, parseFloat(hours)))
+                });
+                saveDevices();
+                renderDevices();
+                showFeedback(`Đã thêm "${name.trim()}" vào bảng kê.`);
+            }
+
+            // Form thêm thiết bị tùy chỉnh
+            const addForm = document.getElementById('add-device-form');
+            addForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameVal = document.getElementById('input-name').value.trim();
+                const wattVal = parseFloat(document.getElementById('input-watt').value);
+                const hoursVal = parseFloat(document.getElementById('input-hours').value);
+
+                if (!nameVal || isNaN(wattVal) || wattVal <= 0 || isNaN(hoursVal) || hoursVal <= 0) {
+                    showFeedback('Vui lòng nhập đầy đủ tên, công suất (> 0) và số giờ dùng (> 0).');
+                    return;
+                }
+
+                addDeviceItem(nameVal, wattVal, hoursVal, 1);
+                addForm.reset();
+                document.getElementById('input-name').focus();
+            });
+
+            // Nút thêm nhanh thiết bị mẫu
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    addDeviceItem(
+                        btn.getAttribute('data-name'),
+                        btn.getAttribute('data-watt'),
+                        btn.getAttribute('data-hours'),
+                        1
+                    );
+                });
+            });
+
+            // Khôi phục danh sách mẫu
+            document.getElementById('reset-sample-btn').addEventListener('click', () => {
+                manualKwhOverride = null;
+                devices = SAMPLE_DEVICES.map(d => ({ ...d }));
+                saveDevices();
+                renderDevices();
+                showFeedback('Đã khôi phục bảng kê thiết bị mẫu.');
+            });
+
+            // Tính nhanh theo kWh nhập tay
+            document.getElementById('apply-direct-kwh').addEventListener('click', () => {
+                const val = parseFloat(document.getElementById('direct-kwh-input').value);
+                if (!isNaN(val) && val >= 0) {
+                    manualKwhOverride = val;
+                    recalculateAll();
+                    showFeedback(`Đang tính tiền điện trực tiếp cho ${val} kWh.`);
+                }
+            });
+
+            // Trình chỉnh sửa đơn giá bậc thang
+            const rateEditorPanel = document.getElementById('rate-editor-panel');
+            const rateInputsContainer = document.getElementById('rate-inputs-container');
+
+            function renderRateEditor() {
+                rateInputsContainer.innerHTML = '';
+                tiers.forEach((tier, i) => {
+                    const div = document.createElement('div');
+                    div.className = 'flex items-center justify-between bg-slate-50 px-2.5 py-1.5 rounded border border-slate-200';
+                    div.innerHTML = `
+                        <span class="text-slate-600 font-medium">Bậc ${i + 1}:</span>
+                        <input type="number" value="${tier.rate}" data-tier="${i}"
+                               class="tier-rate-input w-20 text-right font-semibold text-slate-900 bg-white border border-slate-300 rounded px-1.5 py-0.5">
+                    `;
+                    rateInputsContainer.appendChild(div);
+                });
+
+                document.querySelectorAll('.tier-rate-input').forEach(inp => {
+                    inp.addEventListener('change', (e) => {
+                        const idx = parseInt(e.target.getAttribute('data-tier'), 10);
+                        const val = parseFloat(e.target.value);
+                        if (!isNaN(val) && val >= 0 && tiers[idx]) {
+                            tiers[idx].rate = val;
+                            recalculateAll();
+                        }
+                    });
+                });
+            }
+
+            document.getElementById('toggle-rate-editor').addEventListener('click', () => {
+                rateEditorPanel.classList.toggle('hidden');
+            });
+
+            document.getElementById('reset-rates-btn').addEventListener('click', () => {
+                tiers = DEFAULT_TIERS.map(t => ({ ...t }));
+                renderRateEditor();
+                recalculateAll();
+            });
+
+            daysInput.addEventListener('change', () => {
+                manualKwhOverride = null;
+                renderDevices();
+            });
+            vatSelect.addEventListener('change', recalculateAll);
+
+            // Khởi chạy
+            loadDevices();
+            renderRateEditor();
+            renderDevices();
+        });
+    </script>
+</body>
+</html>
