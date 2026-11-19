@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiết Kiệm AZ - Cẩm Nang Tiết Kiệm Tài Chính & Năng Lượng Toàn Diện</title>
+    <meta name="description" content="Hệ thống cẩm nang thực chiến, sổ tay hướng dẫn và công cụ tính toán giúp bạn tối ưu chi tiêu, tiết kiệm tiền và năng lượng mỗi ngày.">
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-pattern {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2.5 group">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                    <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                </div>
+                <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                    Tiết Kiệm <span class="text-brand-600">AZ</span>
+                </span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="#cam-nang" class="hover:text-brand-600 transition-colors">Sổ Tay & Cẩm Nang</a>
+                <a href="#cong-cu" class="hover:text-brand-600 transition-colors">Công Cụ Tính Toán</a>
+                <a href="#nguyen-tac" class="hover:text-brand-600 transition-colors">Nguyên Tắc Vàng</a>
+                <a href="#gioi-thieu" class="hover:text-brand-600 transition-colors">Về Dự Án</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="flex items-center gap-3">
+                <a href="#cong-cu" class="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition-all shadow-sm hover:shadow">
+                    <i data-lucide="calculator" class="w-4 h-4"></i>
+                    <span>Tính thử ngay</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
+            <a href="#cam-nang" class="block py-2 text-sm font-medium text-slate-700 hover:text-brand-600">Sổ Tay & Cẩm Nang</a>
+            <a href="#cong-cu" class="block py-2 text-sm font-medium text-slate-700 hover:text-brand-600">Công Cụ Tính Toán</a>
+            <a href="#nguyen-tac" class="block py-2 text-sm font-medium text-slate-700 hover:text-brand-600">Nguyên Tắc Vàng</a>
+            <a href="#gioi-thieu" class="block py-2 text-sm font-medium text-slate-700 hover:text-brand-600">Về Dự Án</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-pattern pt-16 pb-20 lg:pt-24 lg:pb-28 border-b border-slate-200/80 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    Kho tàng kiến thức tiết kiệm thực chiến từ A đến Z
+                </div>
+                
+                <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] mb-6">
+                    Tiết kiệm thông minh, <br class="hidden sm:inline" />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-teal-600">
+                        nâng tầm chất lượng sống
+                    </span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+                    Tiết kiệm không phải là cắt giảm kham khổ, mà là tối ưu hóa từng đồng tiền, từng số điện và từng phút giây. Khám phá bộ sổ tay chuyên sâu và các công cụ tính toán trực quan hoàn toàn miễn phí.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#cam-nang" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold transition-all shadow-md hover:shadow-lg">
+                        <i data-lucide="book-open" class="w-5 h-5"></i>
+                        <span>Khám phá Kho Cẩm Nang</span>
+                    </a>
+                    <a href="#cong-cu" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold transition-all shadow-sm">
+                        <i data-lucide="sliders" class="w-5 h-5 text-brand-600"></i>
+                        <span>Mở Công Cụ Tính Toán</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Stats / Pillars -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200/80 text-center shadow-sm">
+                    <div class="text-2xl font-heading font-extrabold text-brand-600">100%</div>
+                    <div class="text-xs font-medium text-slate-500 mt-1">Miễn phí & Thực tế</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200/80 text-center shadow-sm">
+                    <div class="text-2xl font-heading font-extrabold text-slate-900">3 Sổ tay</div>
+                    <div class="text-xs font-medium text-slate-500 mt-1">Đã xuất bản chi tiết</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200/80 text-center shadow-sm">
+                    <div class="text-2xl font-heading font-extrabold text-slate-900">3 Công cụ</div>
+                    <div class="text-xs font-medium text-slate-500 mt-1">Tính toán tự động</div>
+                </div>
+                <div class="bg-white/90 backdrop-blur p-4 rounded-2xl border border-slate-200/80 text-center shadow-sm">
+                    <div class="text-2xl font-heading font-extrabold text-amber-600">A - Z</div>
+                    <div class="text-xs font-medium text-slate-500 mt-1">Tài chính & Năng lượng</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: HỆ THỐNG CẨM NANG & SỔ TAY CHUYÊN SÂU -->
+    <section id="cam-nang" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header + Filter -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-brand-600 font-semibold text-sm tracking-wider uppercase">Hệ thống tri thức</span>
+                    <h2 class="font-heading text-3xl sm:text-4xl font-bold text-slate-900 mt-1">Sổ Tay & Cẩm Nang Chuyên Sâu</h2>
+                    <p class="text-slate-600 mt-2 max-w-xl">Mỗi chủ đề được biên soạn thành một cuốn sổ tay riêng biệt, đi thẳng vào giải pháp, có checklist hành động lưu tự động.</p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2" id="category-filters">
+                    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 text-white transition-colors cursor-pointer">Tất cả</button>
+                    <button data-filter="tai-chinh" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer">Tài chính</button>
+                    <button data-filter="nang-luong" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer">Điện & Nước</button>
+                    <button data-filter="doi-song" class="filter-btn px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors cursor-pointer">Đời sống</button>
+                </div>
+            </div>
+
+            <!-- Grid Cards (Cẩm nang) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="handbook-grid">
+                
+                <!-- Card 1 (ACTIVE): Sổ Tay Quản Lý Tiền & Quỹ Dự Phòng -->
+                <article data-category="tai-chinh" class="handbook-card group bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 transition-all hover:shadow-xl hover:shadow-brand-900/5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
+                                <i data-lucide="wallet" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-emerald-100/70 text-emerald-800">Tài chính cá nhân</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors mb-2">
+                            <a href="cam-nang/tiet-kiem-tien.html">Sổ Tay Quản Lý Tiền & Quỹ Dự Phòng</a>
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Phân bổ thu nhập theo quy tắc 50/30/20, đảo ngược trật tự dòng tiền đầu tháng và xây dựng quỹ dự phòng vững chắc 3–6 tháng.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 flex items-center gap-1">
+                            <i data-lucide="check-square" class="w-3.5 h-3.5 text-brand-600"></i> Checklist 6 bước
+                        </span>
+                        <a href="cam-nang/tiet-kiem-tien.html" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 group-hover:translate-x-1 transition-transform">
+                            Đọc cẩm nang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 2 (ACTIVE): Cẩm Nang Giảm 30% Tiền Điện Gia Đình -->
+                <article data-category="nang-luong" class="handbook-card group bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 transition-all hover:shadow-xl hover:shadow-brand-900/5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center">
+                                <i data-lucide="zap" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-amber-100/70 text-amber-800">Năng lượng</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors mb-2">
+                            <a href="cam-nang/tiet-kiem-dien.html">Cẩm Nang Giảm 30% Tiền Điện Gia Đình</a>
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Bí quyết vận hành điều hòa, tủ lạnh, bình nóng lạnh đúng kỹ thuật, thoát biểu giá điện bậc thang cao và chặn điện tiêu thụ ngầm.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 flex items-center gap-1">
+                            <i data-lucide="check-square" class="w-3.5 h-3.5 text-brand-600"></i> Checklist 6 hành động
+                        </span>
+                        <a href="cam-nang/tiet-kiem-dien.html" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 group-hover:translate-x-1 transition-transform">
+                            Đọc cẩm nang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 3 (ACTIVE): Sổ Tay Lãi Kép & Tích Lũy Dài Hạn -->
+                <article data-category="tai-chinh" class="handbook-card group bg-slate-50 hover:bg-white rounded-2xl p-6 border border-slate-200 hover:border-brand-300 transition-all hover:shadow-xl hover:shadow-brand-900/5 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center">
+                                <i data-lucide="trending-up" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-teal-100/70 text-teal-800">Tích lũy dài hạn</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900 group-hover:text-brand-600 transition-colors mb-2">
+                            <a href="cam-nang/lai-kep-tich-luy.html">Sổ Tay Lãi Kép & Tích Lũy Dài Hạn</a>
+                        </h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                            Hiểu đúng đường cong tăng trưởng lãi kép, 3 đòn bẩy quyết định kết quả dài hạn và cách tránh những sai lầm làm đứt gãy chu kỳ tích lũy.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-500 flex items-center gap-1">
+                            <i data-lucide="check-square" class="w-3.5 h-3.5 text-brand-600"></i> Checklist 5 bước
+                        </span>
+                        <a href="cam-nang/lai-kep-tich-luy.html" class="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 group-hover:translate-x-1 transition-transform">
+                            Đọc cẩm nang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Card 4 (COMING SOON): Mua sắm thông minh -->
+                <article data-category="doi-song" class="handbook-card bg-slate-50/70 rounded-2xl p-6 border border-dashed border-slate-300 flex flex-col justify-between opacity-85">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100/70 text-blue-600 flex items-center justify-center">
+                                <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-200/80 text-slate-600">Sắp ra mắt</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-700 mb-2">
+                            Nghệ Thuật Mua Sắm Không Bị "Dắt Mũi"
+                        </h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                            Áp dụng quy tắc chờ 72 giờ, công thức tính chi phí trên mỗi lần sử dụng (Cost Per Wear) và nhận diện các bẫy giảm giá ảo.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Chuyên đề Tiêu dùng</span>
+                        <span class="text-xs font-semibold text-slate-400">Đang biên soạn...</span>
+                    </div>
+                </article>
+
+                <!-- Card 5 (COMING SOON): Tiết kiệm nước -->
+                <article data-category="nang-luong" class="handbook-card bg-slate-50/70 rounded-2xl p-6 border border-dashed border-slate-300 flex flex-col justify-between opacity-85">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-cyan-100/70 text-cyan-600 flex items-center justify-center">
+                                <i data-lucide="droplets" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-200/80 text-slate-600">Sắp ra mắt</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-700 mb-2">
+                            Sổ Tay Tiết Kiệm Nước & Chống Lãng Phí
+                        </h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                            Cách kiểm tra rò rỉ đường ống ngầm qua đồng hồ nước, tối ưu thiết bị vệ sinh và tái sử dụng nguồn nước sinh hoạt hiệu quả.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Chuyên đề Tài nguyên</span>
+                        <span class="text-xs font-semibold text-slate-400">Đang biên soạn...</span>
+                    </div>
+                </article>
+
+                <!-- Card 6 (COMING SOON): Tối ưu chi phí ăn uống -->
+                <article data-category="doi-song" class="handbook-card bg-slate-50/70 rounded-2xl p-6 border border-dashed border-slate-300 flex flex-col justify-between opacity-85">
+                    <div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-xl bg-rose-100/70 text-rose-600 flex items-center justify-center">
+                                <i data-lucide="utensils" class="w-6 h-6"></i>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium bg-slate-200/80 text-slate-600">Sắp ra mắt</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-700 mb-2">
+                            Tối Ưu Chi Phí Ăn Uống Mà Vẫn Đủ Chất
+                        </h3>
+                        <p class="text-slate-500 text-sm leading-relaxed mb-6">
+                            Lên thực đơn theo tuần (Meal Prep), cách bảo quản thực phẩm tươi lâu không hỏng vặt và giảm chi phí đặt đồ ăn ngoài.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-slate-200/80 flex items-center justify-between">
+                        <span class="text-xs text-slate-400">Chuyên đề Sinh hoạt</span>
+                        <span class="text-xs font-semibold text-slate-400">Đang biên soạn...</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: HỆ THỐNG CÔNG CỤ TÍNH TOÁN -->
+    <section id="cong-cu" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-400 font-semibold text-sm tracking-wider uppercase">Tiện ích trực tuyến</span>
+                <h2 class="font-heading text-3xl sm:text-4xl font-bold mt-1">Công Cụ Tính Toán Tiết Kiệm</h2>
+                <p class="text-slate-400 mt-3">Không cần đoán mò. Nhập con số thực tế của bạn để thấy rõ bức tranh tài chính và mức tiêu thụ năng lượng.</p>
+            </div>
+
+            <!-- Interactive Quick Mini-Tool (Demo ngay trên trang chủ) -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-3xl p-6 sm:p-8 mb-12 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="inline-flex items-center gap-2 text-brand-400 text-xs font-semibold uppercase tracking-wider">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i> Trải nghiệm nhanh: Sức mạnh của tiết kiệm đều đặn
+                        </div>
+                        <h3 class="font-heading text-2xl font-bold">Nếu mỗi ngày bạn tiết kiệm được...</h3>
+                        
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">Số tiền tiết kiệm mỗi ngày:</span>
+                                <span id="daily-val-display" class="font-bold text-brand-400 text-lg">50.000 đ</span>
+                            </div>
+                            <input type="range" id="daily-slider" min="10000" max="500000" step="10000" value="50000" 
+                                   class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>10.000đ (1 ly trà đá)</span>
+                                <span>500.000đ</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-slate-300">Thời gian duy trì (lãi suất gửi tiết kiệm ~6%/năm):</span>
+                                <span id="years-val-display" class="font-bold text-brand-400 text-lg">5 năm</span>
+                            </div>
+                            <input type="range" id="years-slider" min="1" max="20" step="1" value="5" 
+                                   class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>1 năm</span>
+                                <span>10 năm</span>
+                                <span>20 năm</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Box -> Link chuẩn tới cong-cu/tinh-lai-kep.html -->
+                    <div class="lg:col-span-5 bg-gradient-to-br from-brand-600 to-emerald-800 rounded-2xl p-6 sm:p-8 text-center shadow-lg">
+                        <div class="text-brand-100 text-sm font-medium mb-1">Tổng số tiền bạn tích lũy được</div>
+                        <div id="total-result" class="font-heading text-3xl sm:text-4xl font-extrabold text-white my-2">
+                            106.280.000 đ
+                        </div>
+                        <div class="text-xs text-brand-100/90 mb-6">
+                            Trong đó tiền gốc: <span id="principal-result" class="font-semibold">91.250.000 đ</span> • Tiền lãi sinh thêm: <span id="interest-result" class="font-semibold text-amber-300">15.030.000 đ</span>
+                        </div>
+                        <a href="cong-cu/tinh-lai-kep.html" class="inline-flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-semibold text-sm transition-colors">
+                            <span>Mở bảng tính lãi kép chi tiết</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List of 3 Dedicated Tools (All Active & Matched) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tool 1: cong-cu/tinh-tien-dien.html -->
+                <a href="cong-cu/tinh-tien-dien.html" class="group bg-slate-800/50 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-500/50 rounded-2xl p-6 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="plug-zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-white group-hover:text-brand-400 transition-colors mb-2">
+                            Tính Tiền Điện Thiết Bị & Bậc Thang
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Lập bảng kê thiết bị gia đình, tìm thiết bị ngốn điện nhất và tính tiền điện theo 6 bậc thang sinh hoạt kèm VAT.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-400 inline-flex items-center gap-1">
+                        Sử dụng công cụ <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Tool 2: cong-cu/chia-ngan-sach.html -->
+                <a href="cong-cu/chia-ngan-sach.html" class="group bg-slate-800/50 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-500/50 rounded-2xl p-6 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="pie-chart" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-white group-hover:text-brand-400 transition-colors mb-2">
+                            Chia Ngân Sách 50/30/20 & Quỹ Dự Phòng
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Phân bổ thu nhập hàng tháng linh hoạt cho Nhu cầu, Mong muốn, Tiết kiệm và ước tính số tháng hoàn thành quỹ dự phòng.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-400 inline-flex items-center gap-1">
+                        Sử dụng công cụ <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Tool 3: cong-cu/tinh-lai-kep.html -->
+                <a href="cong-cu/tinh-lai-kep.html" class="group bg-slate-800/50 hover:bg-slate-800 border border-slate-700/80 hover:border-brand-500/50 rounded-2xl p-6 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-11 h-11 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <i data-lucide="trending-up" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-heading text-lg font-bold text-white group-hover:text-brand-400 transition-colors mb-2">
+                            Tính Lãi Kép & Mục Tiêu Tích Lũy Dài Hạn
+                        </h3>
+                        <p class="text-slate-400 text-sm mb-4">
+                            Mô phỏng tăng trưởng gốc và lãi kép qua từng năm với biểu đồ trực quan và theo dõi tiến độ đạt mục tiêu tài chính.
+                        </p>
+                    </div>
+                    <span class="text-xs font-semibold text-brand-400 inline-flex items-center gap-1">
+                        Sử dụng công cụ <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 3 NGUYÊN TẮC VÀNG CỦA TIẾT KIỆM AZ -->
+    <section id="nguyen-tac" class="py-20 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-brand-600 font-semibold text-sm tracking-wider uppercase">Triết lý cốt lõi</span>
+                <h2 class="font-heading text-3xl font-bold text-slate-900 mt-1">3 Nguyên Tắc Vàng Tại Tiết Kiệm AZ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-heading font-bold flex items-center justify-center mb-5">01</div>
+                    <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Trả cho mình trước tiên</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Ngay khi nhận lương, hãy trích ngay 10–20% vào tài khoản tiết kiệm riêng biệt trước khi chi tiêu bất kỳ khoản nào khác.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-heading font-bold flex items-center justify-center mb-5">02</div>
+                    <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Chống lãng phí thầm lặng</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Những khoản rò rỉ nhỏ như thiết bị điện ở chế độ chờ, gói cước không dùng tới hay đồ ăn hỏng trong tủ lạnh mới là thứ bào mòn ví tiền nhiều nhất.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-sm">
+                    <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-heading font-bold flex items-center justify-center mb-5">03</div>
+                    <h3 class="font-heading text-lg font-bold text-slate-900 mb-2">Đo lường được mới tối ưu được</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Mọi lời khuyên đều vô nghĩa nếu thiếu con số. Hãy dùng các công cụ tính toán để biến mục tiêu tiết kiệm thành kế hoạch rõ ràng.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="gioi-thieu" class="bg-white py-12 text-slate-600">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 pb-8 border-b border-slate-200">
+                <div>
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                            <i data-lucide="piggy-bank" class="w-4 h-4"></i>
+                        </div>
+                        <span class="font-heading font-extrabold text-lg text-slate-900">
+                            Tiết Kiệm <span class="text-brand-600">AZ</span>
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-500 max-w-md">
+                        Dự án chia sẻ cẩm nang, sổ tay hướng dẫn và công cụ tính toán giúp cộng đồng xây dựng thói quen tiết kiệm thông minh, bền vững.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap gap-6 text-sm font-medium">
+                    <a href="cam-nang/tiet-kiem-tien.html" class="hover:text-brand-600 transition-colors">Sổ tay Tiền</a>
+                    <a href="cam-nang/tiet-kiem-dien.html" class="hover:text-brand-600 transition-colors">Sổ tay Điện</a>
+                    <a href="cam-nang/lai-kep-tich-luy.html" class="hover:text-brand-600 transition-colors">Sổ tay Lãi kép</a>
+                    <a href="#cong-cu" class="hover:text-brand-600 transition-colors">Công cụ tính</a>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-4">
+                <p>© 2026 Tiết Kiệm AZ. Nội dung được biên soạn vì mục đích chia sẻ kiến thức cộng đồng.</p>
+                <p>Thiết kế tối ưu tốc độ • HTML Tĩnh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT INTERACTIVITY -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            // 1. Toggle Mobile Menu
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 2. Bộ lọc danh mục Cẩm nang (Filter Tabs)
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.handbook-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove('bg-slate-900', 'text-white');
+                        b.classList.add('bg-slate-100', 'text-slate-600');
+                    });
+                    btn.classList.remove('bg-slate-100', 'text-slate-600');
+                    btn.classList.add('bg-slate-900', 'text-white');
+
+                    const filterValue = btn.getAttribute('data-filter');
+
+                    cards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // 3. Logic Công cụ tính nhanh trên trang chủ
+            const dailySlider = document.getElementById('daily-slider');
+            const yearsSlider = document.getElementById('years-slider');
+            const dailyDisplay = document.getElementById('daily-val-display');
+            const yearsDisplay = document.getElementById('years-val-display');
+            const totalResult = document.getElementById('total-result');
+            const principalResult = document.getElementById('principal-result');
+            const interestResult = document.getElementById('interest-result');
+
+            function formatVND(number) {
+                return Math.round(number).toLocaleString('vi-VN') + ' đ';
+            }
+
+            function calculateQuickSavings() {
+                const dailyAmount = parseFloat(dailySlider.value);
+                const years = parseInt(yearsSlider.value, 10);
+                const annualRate = 0.06;
+
+                dailyDisplay.textContent = formatVND(dailyAmount);
+                yearsDisplay.textContent = years + ' năm';
+
+                const monthlyContribution = dailyAmount * 30.4167;
+                const months = years * 12;
+                const monthlyRate = annualRate / 12;
+
+                const futureValue = monthlyContribution * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+                const totalPrincipal = dailyAmount * 365 * years;
+                const totalInterest = Math.max(0, futureValue - totalPrincipal);
+
+                totalResult.textContent = formatVND(futureValue);
+                principalResult.textContent = formatVND(totalPrincipal);
+                interestResult.textContent = formatVND(totalInterest);
+            }
+
+            dailySlider.addEventListener('input', calculateQuickSavings);
+            yearsSlider.addEventListener('input', calculateQuickSavings);
+            calculateQuickSavings();
+        });
+    </script>
+</body>
+</html>
