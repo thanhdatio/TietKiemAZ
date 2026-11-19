@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Tay Lãi Kép & Tích Lũy Dài Hạn - Tiết Kiệm AZ</title>
+    <meta name="description" content="Cẩm nang thực chiến hiểu đúng bản chất lãi kép, 3 đòn bẩy tăng trưởng dài hạn, các sai lầm thường gặp và checklist hành động lưu tự động.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .prose-section {
+            scroll-margin-top: 5.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP READING PROGRESS BAR -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-slate-200 z-50">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-brand-500 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-1 z-40 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                        Tiết Kiệm <span class="text-brand-600">AZ</span>
+                    </span>
+                </a>
+                <span class="hidden sm:inline-block text-slate-300">/</span>
+                <span class="hidden sm:inline-block text-xs font-medium text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full">
+                    Sổ tay Tích lũy dài hạn
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="../index.html#cam-nang" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">
+                    Tất cả sổ tay
+                </a>
+                <a href="../cong-cu/tinh-lai-kep.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition-colors shadow-sm">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Công cụ Tính lãi kép</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE HERO -->
+    <section class="bg-white border-b border-slate-200 py-12 lg:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">
+                    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Cẩm nang thực chiến • Lãi kép & Tích lũy dài hạn</span>
+                </div>
+
+                <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                    Sổ Tay Lãi Kép & Nghệ Thuật Tích Lũy Dài Hạn
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+                    Lãi kép không tạo ra kết quả đột biến trong vài ngày, mà phát huy sức mạnh rõ rệt nhất khi đủ thời gian, đủ sự đều đặn và không bị ngắt quãng giữa chừng. Hiểu đúng cơ chế này giúp anh xây dựng kế hoạch tích lũy thực tế thay vì chạy theo kỳ vọng ngắn hạn.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-500 pt-2 border-t border-slate-100">
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i> Thời gian đọc: ~7 phút
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600"></i> Có Checklist lưu tự động
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="calendar-check" class="w-4 h-4 text-brand-600"></i> Cập nhật 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT + STICKY SIDEBAR -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+            <!-- SIDEBAR TOC (4 cols) -->
+            <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                    <h2 class="font-heading text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">
+                        Mục lục sổ tay
+                    </h2>
+                    <nav class="space-y-1 text-sm font-medium">
+                        <a href="#ban-chat-lai-kep" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            1. Bản chất lãi kép & Đường cong tăng trưởng
+                        </a>
+                        <a href="#ba-don-bay" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            2. Ba biến số quyết định kết quả dài hạn
+                        </a>
+                        <a href="#sai-lam-thuong-gap" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            3. Những sai lầm làm đứt gãy lãi kép
+                        </a>
+                        <a href="#van-hanh-thuc-te" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            4. Cách vận hành bền vững qua từng giai đoạn
+                        </a>
+                        <a href="#checklist" class="block px-3 py-2 rounded-lg text-brand-700 bg-brand-50/70 hover:bg-brand-100 transition-colors font-semibold">
+                            5. Checklist hành động (Lưu tự động)
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Callout Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mb-3">
+                        <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Muốn mô phỏng con số của riêng anh?</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Thử thay đổi vốn ban đầu, tiền gửi hàng tháng, lãi suất và số năm để thấy rõ sự khác biệt giữa tiền gốc và tiền lãi kép.
+                    </p>
+                    <a href="../cong-cu/tinh-lai-kep.html" class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-colors">
+                        <span>Mở công cụ tính lãi kép</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ARTICLE BODY (8 cols) -->
+            <div class="lg:col-span-8 space-y-12">
+
+                <!-- Section 1 -->
+                <section id="ban-chat-lai-kep" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">1. Bản chất lãi kép & Đường cong tăng trưởng</h2>
+                    <p class="text-slate-600 leading-relaxed mb-5">
+                        Khác với lãi đơn chỉ tính trên phần vốn gốc ban đầu, <strong>lãi kép</strong> cộng dồn phần lãi sinh ra vào số dư hiện tại để tiếp tục sinh lãi ở các kỳ tiếp theo. Khi kết hợp thêm khoản góp đều mỗi tháng, tổng giá trị tăng theo đường cong dốc dần theo thời gian.
+                    </p>
+
+                    <div class="bg-brand-50 border-l-4 border-brand-600 rounded-r-xl p-4 mb-6">
+                        <div class="font-heading font-bold text-brand-900 text-sm mb-1">💡 Điểm mấu chốt cần nhớ</div>
+                        <p class="text-sm text-brand-800 leading-relaxed">
+                            Trong vài năm đầu, phần lớn tài sản tích lũy vẫn đến từ tiền gốc anh tự bỏ ra. Bước sang các năm sau, khi nền tảng gốc đã đủ lớn, phần lãi cộng dồn mới bắt đầu đóng góp tỷ trọng đáng kể mỗi năm.
+                        </p>
+                    </div>
+
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Chính vì phần "tăng tốc" nằm ở giai đoạn sau nên người thiếu kiên nhẫn thường bỏ cuộc sớm khi thấy những năm đầu con số nhích lên chậm chạp.
+                    </p>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="ba-don-bay" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">2. Ba biến số quyết định kết quả dài hạn</h2>
+                    <p class="text-slate-600 leading-relaxed mb-5">
+                        Khi lập kế hoạch tích lũy dài hạn, có 3 biến số anh cần cân nhắc đồng bộ thay vì chỉ nhìn vào một con số đơn lẻ:
+                    </p>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500 bg-slate-50">
+                                    <th class="py-3 px-4 font-semibold">Biến số</th>
+                                    <th class="py-3 px-4 font-semibold">Vai trò</th>
+                                    <th class="py-3 px-4 font-semibold">Lưu ý thực tế</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Thời gian duy trì</td>
+                                    <td class="py-3 px-4 text-brand-700 font-bold">Đòn bẩy nền tảng</td>
+                                    <td class="py-3 px-4 text-slate-600">Càng bắt đầu sớm và giữ chu kỳ càng dài, số lần ghép lãi càng nhiều.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Khoản góp định kỳ</td>
+                                    <td class="py-3 px-4 text-amber-700 font-bold">Nhiên liệu đều đặn</td>
+                                    <td class="py-3 px-4 text-slate-600">Góp đều đặn mỗi tháng quan trọng hơn việc chờ có cục tiền lớn mới bắt đầu.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Mức sinh lời & Lạm phát</td>
+                                    <td class="py-3 px-4 text-blue-700 font-bold">Tốc độ & Sức mua</td>
+                                    <td class="py-3 px-4 text-slate-600">Lãi suất cao luôn đi kèm mức biến động/rủi ro tương ứng; cần giữ mục tiêu thực tế và tính cả trượt giá.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="sai-lam-thuong-gap" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">3. Những sai lầm làm đứt gãy lãi kép</h2>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Rút tiền tích lũy dài hạn cho chi tiêu ngắn hạn:</strong> Mỗi lần rút bớt gốc hoặc lãi là cắt đi một phần động cơ sinh lời cho các năm tiếp theo. (Vì vậy cần có riêng <em>quỹ dự phòng</em> như ở sổ tay quản lý tiền).</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Đổi chiến lược liên tục theo biến động ngắn hạn:</strong> Dừng góp hoặc đảo chiều liên tục khiến dòng tiền thiếu tính nhất quán.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Quên lạm phát khi đặt mục tiêu 10–15 năm:</strong> Một con số mục tiêu dài hạn nên được rà soát định kỳ để đảm bảo vẫn sát với chi phí thực tế tương lai.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="van-hanh-thuc-te" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">4. Cách vận hành bền vững qua từng giai đoạn</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Hãy chọn một mức góp hàng tháng nằm trong khả năng chi trả thoải mái để duy trì được xuyên suốt nhiều năm, thay vì đặt mức quá cao rồi đứt gãy sau vài tháng. Khi thu nhập tăng lên hoặc khoản chi cố định giảm bớt, anh có thể nâng dần mức góp định kỳ và kiểm tra lại lộ trình trên công cụ tính lãi kép.
+                    </p>
+                </section>
+
+                <!-- Section 5: Interactive Checklist -->
+                <section id="checklist" class="prose-section bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">5. Checklist Hành Động Tích Lũy Dài Hạn</h2>
+                            <p class="text-sm text-slate-500 mt-1">Tích chọn các bước anh đã áp dụng — trạng thái tự động lưu trên trình duyệt này.</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span id="checklist-progress-text" class="text-sm font-bold text-brand-700">0 / 5 hoàn thành (0%)</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-6">
+                        <div id="checklist-progress-bar" class="h-full bg-brand-600 w-0 transition-all duration-300"></div>
+                    </div>
+
+                    <div id="checklist-items" class="space-y-3">
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="cmp-1" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Xác định rõ mục tiêu tích lũy dài hạn (số tiền mục tiêu và khung thời gian dự kiến).</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="cmp-2" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Tách biệt nguồn tích lũy dài hạn khỏi quỹ dự phòng ngắn hạn để không rút nhầm.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="cmp-3" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Chốt mức góp hàng tháng vừa sức để duy trì liên tục qua nhiều năm.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="cmp-4" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Mô phỏng ít nhất 2 kịch bản (thận trọng và tích cực) trên công cụ tính lãi kép.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="cmp-5" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Rà soát kế hoạch mỗi 6–12 tháng để điều chỉnh mức góp khi thu nhập thay đổi.</span>
+                        </label>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                        <button id="reset-checklist-btn" type="button" class="text-xs font-medium text-slate-500 hover:text-rose-600 transition-colors cursor-pointer">
+                            Đặt lại toàn bộ checklist
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>© 2026 Tiết Kiệm AZ • Sổ tay Lãi Kép & Tích Lũy Dài Hạn</div>
+            <div class="flex gap-5">
+                <a href="../index.html" class="hover:text-brand-600 font-medium">Trang chủ</a>
+                <a href="../cong-cu/tinh-lai-kep.html" class="hover:text-brand-600 font-medium">Công cụ tính lãi kép</a>
+                <a href="../cam-nang/tiet-kiem-tien.html" class="hover:text-brand-600 font-medium">Sổ tay Quản lý tiền</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            const progressBar = document.getElementById('reading-progress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(100, Math.max(0, percent)) + '%';
+            });
+
+            const STORAGE_KEY = 'tietkiemaz_checklist_laikep_v1';
+            const memoryState = {};
+            const checkboxes = document.querySelectorAll('.chk-item');
+            const progressText = document.getElementById('checklist-progress-text');
+            const checklistBar = document.getElementById('checklist-progress-bar');
+            const resetBtn = document.getElementById('reset-checklist-btn');
+
+            function readState() {
+                try {
+                    return window.localStorage.getItem(STORAGE_KEY);
+                } catch (e) {
+                    return memoryState[STORAGE_KEY] || null;
+                }
+            }
+
+            function writeState(val) {
+                memoryState[STORAGE_KEY] = val;
+                try {
+                    window.localStorage.setItem(STORAGE_KEY, val);
+                } catch (e) {}
+            }
+
+            function toggleLabelStyle(chk) {
+                const textSpan = chk.nextElementSibling;
+                if (!textSpan) return;
+                if (chk.checked) {
+                    textSpan.classList.add('line-through', 'text-slate-400');
+                    textSpan.classList.remove('text-slate-700');
+                } else {
+                    textSpan.classList.remove('line-through', 'text-slate-400');
+                    textSpan.classList.add('text-slate-700');
+                }
+            }
+
+            function updateChecklistSummary() {
+                const total = checkboxes.length;
+                const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+                const pct = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+                progressText.textContent = `${checkedCount} / ${total} hoàn thành (${pct}%)`;
+                checklistBar.style.width = pct + '%';
+            }
+
+            function saveChecklistState() {
+                const state = {};
+                checkboxes.forEach(chk => {
+                    state[chk.getAttribute('data-id')] = chk.checked;
+                });
+                writeState(JSON.stringify(state));
+            }
+
+            function loadChecklistState() {
+                const raw = readState();
+                let saved = {};
+                if (raw) {
+                    try {
+                        saved = JSON.parse(raw) || {};
+                    } catch (e) {}
+                }
+                checkboxes.forEach(chk => {
+                    const id = chk.getAttribute('data-id');
+                    chk.checked = Boolean(saved[id]);
+                    toggleLabelStyle(chk);
+                });
+                updateChecklistSummary();
+            }
+
+            checkboxes.forEach(chk => {
+                chk.addEventListener('change', () => {
+                    toggleLabelStyle(chk);
+                    saveChecklistState();
+                    updateChecklistSummary();
+                });
+            });
+
+            resetBtn.addEventListener('click', () => {
+                checkboxes.forEach(chk => {
+                    chk.checked = false;
+                    toggleLabelStyle(chk);
+                });
+                saveChecklistState();
+                updateChecklistSummary();
+            });
+
+            loadChecklistState();
+        });
+    </script>
+</body>
+</html>

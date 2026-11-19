@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Tay Quản Lý Tiền & Quỹ Dự Phòng - Tiết Kiệm AZ</title>
+    <meta name="description" content="Cẩm nang thực chiến quản lý tài chính cá nhân, phân bổ thu nhập theo quy tắc 50/30/20, xây dựng quỹ dự phòng và checklist hành động lưu tự động.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .prose-section {
+            scroll-margin-top: 5.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP READING PROGRESS BAR -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-slate-200 z-50">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-brand-500 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-1 z-40 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                        Tiết Kiệm <span class="text-brand-600">AZ</span>
+                    </span>
+                </a>
+                <span class="hidden sm:inline-block text-slate-300">/</span>
+                <span class="hidden sm:inline-block text-xs font-medium text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-full">
+                    Sổ tay Tài chính cá nhân
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="../index.html#cam-nang" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">
+                    Tất cả sổ tay
+                </a>
+                <a href="../cong-cu/chia-ngan-sach.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition-colors shadow-sm">
+                    <i data-lucide="pie-chart" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Chia ngân sách 50/30/20</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE HERO -->
+    <section class="bg-white border-b border-slate-200 py-12 lg:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold mb-4">
+                    <i data-lucide="wallet" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Cẩm nang thực chiến • Tài chính cá nhân</span>
+                </div>
+
+                <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                    Sổ Tay Quản Lý Tiền & Xây Dựng Quỹ Dự Phòng Vững Chắc
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+                    Giữ tiền hiệu quả không nằm ở việc nhịn ăn nhịn mặc cực đoan, mà nằm ở trật tự phân bổ dòng tiền ngay từ đầu tháng, tách biệt tài khoản chi tiêu với tích lũy và xây lớp đệm an toàn trước biến cố.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-500 pt-2 border-t border-slate-100">
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i> Thời gian đọc: ~8 phút
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600"></i> Có Checklist lưu tự động
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="calendar-check" class="w-4 h-4 text-brand-600"></i> Cập nhật 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT + STICKY SIDEBAR -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+            <!-- SIDEBAR TOC (4 cols) -->
+            <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                    <h2 class="font-heading text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">
+                        Mục lục sổ tay
+                    </h2>
+                    <nav class="space-y-1 text-sm font-medium">
+                        <a href="#tong-quan-dong-tien" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            1. Trật tự dòng tiền & Nguyên tắc cốt lõi
+                        </a>
+                        <a href="#quy-tac-50-30-20" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            2. Khung phân bổ ngân sách 50 / 30 / 20
+                        </a>
+                        <a href="#quy-du-phong" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            3. Xây dựng Quỹ dự phòng 3–6 tháng
+                        </a>
+                        <a href="#bay-chi-tieu" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            4. Nhận diện "rò rỉ" tiền bạc phổ biến
+                        </a>
+                        <a href="#checklist" class="block px-3 py-2 rounded-lg text-brand-700 bg-brand-50/70 hover:bg-brand-100 transition-colors font-semibold">
+                            5. Checklist hành động (Lưu tự động)
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Callout Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mb-3">
+                        <i data-lucide="pie-chart" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Muốn chia ngân sách ngay?</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Nhập thu nhập ròng hàng tháng để xem hạn mức 50/30/20 và ước tính số tháng hoàn thành quỹ dự phòng.
+                    </p>
+                    <a href="../cong-cu/chia-ngan-sach.html" class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-colors">
+                        <span>Mở công cụ chia ngân sách</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ARTICLE BODY (8 cols) -->
+            <div class="lg:col-span-8 space-y-12">
+
+                <!-- Section 1 -->
+                <section id="tong-quan-dong-tien" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">1. Trật tự dòng tiền & Nguyên tắc cốt lõi</h2>
+                    <p class="text-slate-600 leading-relaxed mb-5">
+                        Nhiều người đặt mục tiêu "cuối tháng còn dư bao nhiêu thì tiết kiệm bấy nhiêu", nhưng thực tế chi tiêu linh hoạt luôn nở ra lấp đầy phần dư đó. Đảo ngược thứ tự — <strong>trích tiết kiệm ngay khi tiền về tài khoản</strong> — là thay đổi đơn giản nhưng tạo khác biệt lớn nhất.
+                    </p>
+
+                    <div class="bg-brand-50 border-l-4 border-brand-600 rounded-r-xl p-4 mb-6">
+                        <div class="font-heading font-bold text-brand-900 text-sm mb-1">💡 Điểm mấu chốt cần nhớ</div>
+                        <p class="text-sm text-brand-800 leading-relaxed">
+                            Đừng dựa vào ý chí kiềm chế mỗi ngày. Hãy tự động hóa bằng cách chuyển khoản phần tiết kiệm sang một tài khoản tách biệt ngay ngày nhận lương, chỉ để lại phần hạn mức sinh hoạt trên tài khoản chi tiêu chính.
+                        </p>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Tách bạch tài khoản:</strong> Tiền sinh hoạt hàng ngày, tiền quỹ dự phòng và tiền đầu tư/mục tiêu nên nằm ở các "hũ" hoặc tài khoản riêng để tránh tiêu nhầm.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Ghi chép tối giản nhưng đều đặn:</strong> Chỉ cần theo dõi 4–5 nhóm chi lớn (nhà ở, ăn uống/di chuyển, hóa đơn/con cái, giải trí, tích lũy) thay vì ghi từng đồng lẻ gây nản.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="quy-tac-50-30-20" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">2. Khung phân bổ ngân sách 50 / 30 / 20</h2>
+                    <p class="text-slate-600 leading-relaxed mb-5">
+                        Quy tắc 50/30/20 là bản đồ tham chiếu dễ áp dụng để cân bằng giữa cuộc sống hiện tại và sự an tâm tương lai. Tùy mức thu nhập và chi phí nhà ở từng giai đoạn, anh có thể linh hoạt tinh chỉnh (ví dụ 60/20/20 khi đang gánh chi phí lớn).
+                    </p>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500 bg-slate-50">
+                                    <th class="py-3 px-4 font-semibold">Nhóm ngân sách</th>
+                                    <th class="py-3 px-4 font-semibold">Tỷ lệ chuẩn</th>
+                                    <th class="py-3 px-4 font-semibold">Bao gồm những gì</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Nhu cầu thiết yếu</td>
+                                    <td class="py-3 px-4 text-brand-700 font-bold">50%</td>
+                                    <td class="py-3 px-4 text-slate-600">Tiền nhà/thuê nhà, điện nước, ăn uống cơ bản, đi lại, bảo hiểm & y tế tối thiểu, trả nợ gốc/lãi tối thiểu.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Mong muốn cá nhân</td>
+                                    <td class="py-3 px-4 text-amber-700 font-bold">30%</td>
+                                    <td class="py-3 px-4 text-slate-600">Ăn ngoài/cà phê, du lịch, mua sắm quần áo/thiết bị nâng cấp, giải trí, sở thích cá nhân.</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Tiết kiệm & Tích lũy</td>
+                                    <td class="py-3 px-4 text-blue-700 font-bold">20%</td>
+                                    <td class="py-3 px-4 text-slate-600">Quỹ dự phòng khẩn cấp, gửi tiết kiệm có kỳ hạn, đầu tư dài hạn hoặc trả nợ trước hạn.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="quy-du-phong" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">3. Xây dựng Quỹ dự phòng 3–6 tháng</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Quỹ dự phòng khẩn cấp là lớp áo giáp tài chính giúp gia đình đứng vững khi gặp sự cố sức khỏe, biến động công việc hoặc hỏng hóc lớn đột xuất mà không phải vay nóng hay bán tài sản vội vã.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                            <h3 class="font-heading font-bold text-slate-900 mb-2">Quy mô mục tiêu</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• Tính theo <strong>chi phí sinh hoạt thiết yếu hàng tháng</strong> (không tính khoản giải trí xa xỉ).</li>
+                                <li>• Thu nhập ổn định hoặc ít người phụ thuộc: hướng tới <strong>3–4 tháng</strong>.</li>
+                                <li>• Thu nhập biến động hoặc nuôi con nhỏ / có khoản vay: hướng tới <strong>6 tháng trở lên</strong>.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                            <h3 class="font-heading font-bold text-slate-900 mb-2">Nơi giữ quỹ hợp lý</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• Ưu tiên <strong>tính thanh khoản cao và an toàn</strong> hơn là chạy theo lợi nhuận rủi ro cao.</li>
+                                <li>• Có thể chia thành các sổ tiết kiệm ngắn kỳ/online xoay vòng để rút linh hoạt khi cần.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="bay-chi-tieu" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">4. Nhận diện "rò rỉ" tiền bạc phổ biến</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Đôi khi vấn đề không nằm ở mức thu nhập, mà ở <strong>lạm phát lối sống</strong>: thu nhập tăng lên bao nhiêu thì chi tiêu nâng cấp bấy nhiêu, cùng các gói đăng ký tự động gia hạn, phí giao hàng/tiện ích nhỏ lẻ nhưng lặp đi lặp lại mỗi tuần. Rà soát định kỳ 3 tháng/lần giúp chặn đứng những khoản thoát ly lặng lẽ này.
+                    </p>
+                </section>
+
+                <!-- Section 5: Interactive Checklist -->
+                <section id="checklist" class="prose-section bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">5. Checklist Hành Động Tài Chính</h2>
+                            <p class="text-sm text-slate-500 mt-1">Tích chọn các bước anh đã thiết lập — trạng thái tự động lưu trên trình duyệt này.</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span id="checklist-progress-text" class="text-sm font-bold text-brand-700">0 / 6 hoàn thành (0%)</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-6">
+                        <div id="checklist-progress-bar" class="h-full bg-brand-600 w-0 transition-all duration-300"></div>
+                    </div>
+
+                    <div id="checklist-items" class="space-y-3">
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-1" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Tách riêng tài khoản/hũ tiết kiệm và dự phòng khỏi tài khoản chi tiêu hàng ngày.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-2" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Tính tổng chi phí thiết yếu hàng tháng và chốt con số mục tiêu quỹ dự phòng 3–6 tháng.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-3" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Áp dụng chuyển khoản tiết kiệm tự động ngay khi nhận thu nhập hàng tháng.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-4" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Rà soát và hủy các gói dịch vụ/ứng dụng tự động gia hạn không còn dùng thường xuyên.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-5" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Dùng công cụ chia ngân sách 50/30/20 để kiểm tra tỷ trọng chi tiêu thực tế.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="fin-6" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Đặt lịch soát lại dòng tiền ngắn gọn 15 phút vào cuối mỗi tháng.</span>
+                        </label>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                        <button id="reset-checklist-btn" type="button" class="text-xs font-medium text-slate-500 hover:text-rose-600 transition-colors cursor-pointer">
+                            Đặt lại toàn bộ checklist
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>© 2026 Tiết Kiệm AZ • Sổ tay Quản lý Tiền & Quỹ Dự Phòng</div>
+            <div class="flex gap-5">
+                <a href="../index.html" class="hover:text-brand-600 font-medium">Trang chủ</a>
+                <a href="../cong-cu/chia-ngan-sach.html" class="hover:text-brand-600 font-medium">Công cụ chia ngân sách</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+
+            const progressBar = document.getElementById('reading-progress');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = Math.min(100, Math.max(0, percent)) + '%';
+            });
+
+            const STORAGE_KEY = 'tietkiemaz_checklist_taichinh_v1';
+            const memoryState = {};
+            const checkboxes = document.querySelectorAll('.chk-item');
+            const progressText = document.getElementById('checklist-progress-text');
+            const checklistBar = document.getElementById('checklist-progress-bar');
+            const resetBtn = document.getElementById('reset-checklist-btn');
+
+            function readState() {
+                try {
+                    return window.localStorage.getItem(STORAGE_KEY);
+                } catch (e) {
+                    return memoryState[STORAGE_KEY] || null;
+                }
+            }
+
+            function writeState(val) {
+                memoryState[STORAGE_KEY] = val;
+                try {
+                    window.localStorage.setItem(STORAGE_KEY, val);
+                } catch (e) {}
+            }
+
+            function toggleLabelStyle(chk) {
+                const textSpan = chk.nextElementSibling;
+                if (!textSpan) return;
+                if (chk.checked) {
+                    textSpan.classList.add('line-through', 'text-slate-400');
+                    textSpan.classList.remove('text-slate-700');
+                } else {
+                    textSpan.classList.remove('line-through', 'text-slate-400');
+                    textSpan.classList.add('text-slate-700');
+                }
+            }
+
+            function updateChecklistSummary() {
+                const total = checkboxes.length;
+                const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+                const pct = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+                progressText.textContent = `${checkedCount} / ${total} hoàn thành (${pct}%)`;
+                checklistBar.style.width = pct + '%';
+            }
+
+            function saveChecklistState() {
+                const state = {};
+                checkboxes.forEach(chk => {
+                    state[chk.getAttribute('data-id')] = chk.checked;
+                });
+                writeState(JSON.stringify(state));
+            }
+
+            function loadChecklistState() {
+                const raw = readState();
+                let saved = {};
+                if (raw) {
+                    try {
+                        saved = JSON.parse(raw) || {};
+                    } catch (e) {}
+                }
+                checkboxes.forEach(chk => {
+                    const id = chk.getAttribute('data-id');
+                    chk.checked = Boolean(saved[id]);
+                    toggleLabelStyle(chk);
+                });
+                updateChecklistSummary();
+            }
+
+            checkboxes.forEach(chk => {
+                chk.addEventListener('change', () => {
+                    toggleLabelStyle(chk);
+                    saveChecklistState();
+                    updateChecklistSummary();
+                });
+            });
+
+            resetBtn.addEventListener('click', () => {
+                checkboxes.forEach(chk => {
+                    chk.checked = false;
+                    toggleLabelStyle(chk);
+                });
+                saveChecklistState();
+                updateChecklistSummary();
+            });
+
+            loadChecklistState();
+        });
+    </script>
+</body>
+</html>

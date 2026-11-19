@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Giảm 30% Tiền Điện Gia Đình - Tiết Kiệm AZ</title>
+    <meta name="description" content="Sổ tay kỹ thuật thực tế giúp giảm hóa đơn tiền điện mỗi tháng với điều hòa, tủ lạnh, bình nóng lạnh và checklist hành động lưu tự động.">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            900: '#064e3b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .prose-section {
+            scroll-margin-top: 5.5rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- TOP READING PROGRESS BAR -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-slate-200 z-50">
+        <div id="reading-progress" class="h-full bg-gradient-to-r from-brand-500 to-teal-500 w-0 transition-all duration-150"></div>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-1 z-40 glass-nav border-b border-slate-200/80">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="../index.html" class="flex items-center gap-2.5 group">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                        <i data-lucide="piggy-bank" class="w-5 h-5"></i>
+                    </div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-slate-900">
+                        Tiết Kiệm <span class="text-brand-600">AZ</span>
+                    </span>
+                </a>
+                <span class="hidden sm:inline-block text-slate-300">/</span>
+                <span class="hidden sm:inline-block text-xs font-medium text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
+                    Sổ tay Năng lượng
+                </span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="../index.html#cam-nang" class="text-sm font-medium text-slate-600 hover:text-brand-600 transition-colors">
+                    Tất cả sổ tay
+                </a>
+                <a href="../cong-cu/tinh-tien-dien.html" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium transition-colors shadow-sm">
+                    <i data-lucide="calculator" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Tính tiền điện</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ARTICLE HERO -->
+    <section class="bg-white border-b border-slate-200 py-12 lg:py-16">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold mb-4">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-600"></i>
+                    <span>Cẩm nang thực chiến • Tiết kiệm Điện & Năng lượng</span>
+                </div>
+
+                <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+                    Cẩm Nang Giảm 30% Tiền Điện Gia Đình Mà Vẫn Thoải Mái
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
+                    Hóa đơn tiền điện tăng vọt thường đến từ cách vận hành chưa tối ưu của 4 nhóm thiết bị lớn và điện tiêu thụ ngầm. Áp dụng đúng kỹ thuật dưới đây để giảm chi phí bền vững ngay từ tháng này.
+                </p>
+
+                <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-500 pt-2 border-t border-slate-100">
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="clock" class="w-4 h-4 text-brand-600"></i> Thời gian đọc: ~7 phút
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="check-circle-2" class="w-4 h-4 text-brand-600"></i> Có Checklist lưu tự động
+                    </span>
+                    <span class="inline-flex items-center gap-1.5">
+                        <i data-lucide="calendar-check" class="w-4 h-4 text-brand-600"></i> Cập nhật 2026
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT + STICKY SIDEBAR -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+            <!-- SIDEBAR TOC (4 cols) -->
+            <aside class="lg:col-span-4 lg:sticky lg:top-24 space-y-6">
+                <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm">
+                    <h2 class="font-heading text-sm font-bold uppercase tracking-wider text-slate-400 mb-3">
+                        Mục lục sổ tay
+                    </h2>
+                    <nav class="space-y-1 text-sm font-medium">
+                        <a href="#tong-quan" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            1. Tóm tắt nhanh & Bức tranh tiêu thụ
+                        </a>
+                        <a href="#dieu-hoa" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            2. Tối ưu Điều hòa (Chiếm 35-50%)
+                        </a>
+                        <a href="#tu-lanh-binh-nong-lanh" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            3. Tủ lạnh & Bình nóng lạnh
+                        </a>
+                        <a href="#dien-ngam" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-brand-50 hover:text-brand-700 transition-colors">
+                            4. Chặn đứng "ma cà rồng" điện ngầm
+                        </a>
+                        <a href="#checklist" class="block px-3 py-2 rounded-lg text-brand-700 bg-brand-50/70 hover:bg-brand-100 transition-colors font-semibold">
+                            5. Checklist hành động (Lưu tự động)
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Callout Card -->
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-6 shadow-sm">
+                    <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center mb-3">
+                        <i data-lucide="gauge" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg mb-2">Ước tính nhanh tiền điện?</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Nhập công suất và số giờ dùng thực tế của từng thiết bị trong nhà để xem con số kWh trước khi nhận hóa đơn.
+                    </p>
+                    <a href="../cong-cu/tinh-tien-dien.html" class="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-4 rounded-xl bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-colors">
+                        <span>Mở công cụ tính tiền điện</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </aside>
+
+            <!-- ARTICLE BODY (8 cols) -->
+            <div class="lg:col-span-8 space-y-12">
+
+                <!-- Section 1 -->
+                <section id="tong-quan" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">1. Tóm tắt nhanh & Bức tranh tiêu thụ</h2>
+                    <p class="text-slate-600 leading-relaxed mb-5">
+                        Trong đa số hộ gia đình tại Việt Nam, hóa đơn tiền điện tăng cao không phải vì đèn chiếu sáng hay tivi, mà vì <strong>nhiệt năng</strong> (làm mát và đun nóng nước) cùng việc bật/tắt thiết bị thiếu hợp lý đẩy sản lượng kWh nhảy lên các bậc thang giá cao hơn.
+                    </p>
+
+                    <!-- Key Takeaway Box -->
+                    <div class="bg-brand-50 border-l-4 border-brand-600 rounded-r-xl p-4 mb-6">
+                        <div class="font-heading font-bold text-brand-900 text-sm mb-1">💡 Điểm mấu chốt cần nhớ</div>
+                        <p class="text-sm text-brand-800 leading-relaxed">
+                            Giá điện tính theo bậc thang lũy tiến: càng dùng vượt mốc ở các bậc cao, chi phí trên mỗi kWh càng đắt. Giảm được 15–20% tổng sản lượng điện thường giúp giảm tiền thanh toán ở tỷ lệ cao hơn nhờ thoát khỏi các bậc giá cao nhất.
+                        </p>
+                    </div>
+
+                    <!-- Comparison Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500 bg-slate-50">
+                                    <th class="py-3 px-4 font-semibold">Nhóm thiết bị</th>
+                                    <th class="py-3 px-4 font-semibold">Tỷ trọng ước tính</th>
+                                    <th class="py-3 px-4 font-semibold">Đòn bẩy tiết kiệm chính</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Điều hòa không khí</td>
+                                    <td class="py-3 px-4 text-amber-700 font-semibold">35% – 50%</td>
+                                    <td class="py-3 px-4 text-slate-600">Giữ nhiệt độ 26–27°C + quạt đảo gió, vệ sinh lưới lọc định kỳ</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Tủ lạnh</td>
+                                    <td class="py-3 px-4 text-slate-800 font-semibold">15% – 22%</td>
+                                    <td class="py-3 px-4 text-slate-600">Không mở cửa lâu, tránh đặt sát nguồn nhiệt hoặc nắng chiếu</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Bình nóng lạnh</td>
+                                    <td class="py-3 px-4 text-slate-800 font-semibold">10% – 18%</td>
+                                    <td class="py-3 px-4 text-slate-600">Bật trước khi tắm 15–20 phút, tắt ngay khi sử dụng</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4 font-medium text-slate-900">Máy giặt, chiếu sáng & chờ</td>
+                                    <td class="py-3 px-4 text-slate-800 font-semibold">15% – 25%</td>
+                                    <td class="py-3 px-4 text-slate-600">Giặt đủ tải, dùng LED, ngắt nguồn thiết bị chờ</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section 2 -->
+                <section id="dieu-hoa" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">2. Tối ưu Điều hòa (Đòn bẩy lớn nhất)</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Mỗi lần hạ nhiệt độ cài đặt xuống thấp hơn 1°C, điện năng tiêu thụ của máy lạnh có thể tăng thêm khoảng <strong>5% – 8%</strong> tùy điều kiện cách nhiệt của phòng.
+                    </p>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Cài đặt 26°C – 27°C kết hợp quạt:</strong> Luồng gió nhẹ từ quạt giúp cảm giác mát lan tỏa đều khắp phòng, cho phép giữ mức nhiệt điều hòa cao hơn mà vẫn dễ chịu.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Vệ sinh lưới lọc 2–4 tuần/lần:</strong> Lưới lọc bám bụi làm giảm lưu lượng gió, buộc máy nén hoạt động nặng và lâu hơn.</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i data-lucide="check" class="w-4 h-4 text-brand-600 mt-1 shrink-0"></i>
+                            <span><strong>Giảm thất thoát nhiệt phòng:</strong> Đóng kín cửa, kéo rèm chắn nắng hướng Tây và hạn chế mở ra vào liên tục.</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- Section 3 -->
+                <section id="tu-lanh-binh-nong-lanh" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">3. Tủ lạnh & Bình nóng lạnh</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                            <h3 class="font-heading font-bold text-slate-900 mb-2">Tủ lạnh (chạy 24/7)</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• Không cho thức ăn còn nóng nghi ngút khói vào thẳng tủ.</li>
+                                <li>• Duy trì ngăn mát khoảng 3°C – 5°C, ngăn đá khoảng -18°C.</li>
+                                <li>• Chừa khoảng trống thông thoáng quanh dàn tản nhiệt phía sau/hai bên.</li>
+                            </ul>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80">
+                            <h3 class="font-heading font-bold text-slate-900 mb-2">Bình nóng lạnh (công suất lớn)</h3>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li>• Bật trước khoảng 15–20 phút rồi tắt trước khi vào tắm để giảm nguy cơ rò điện và đỡ tốn điện duy trì nhiệt.</li>
+                                <li>• Chọn mức nhiệt vừa đủ dùng thay vì vặn kịch mức tối đa.</li>
+                                <li>• Kiểm tra gioăng vòi và xả cặn định kỳ để hiệu suất trao đổi nhiệt ổn định.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section 4 -->
+                <section id="dien-ngam" class="prose-section bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm">
+                    <h2 class="font-heading text-2xl font-bold text-slate-900 mb-4">4. Chặn đứng điện tiêu thụ ngầm</h2>
+                    <p class="text-slate-600 leading-relaxed mb-4">
+                        Các thiết bị ở chế độ chờ (standby) như bộ sạc, TV, loa thông minh, máy in, cục biến áp... vẫn tiêu thụ điện liên tục từng giờ. Dùng ổ cắm có công tắc tổng hoặc ổ cắm hẹn giờ giúp cắt đứt nguồn điện dư thừa chỉ bằng một thao tác.
+                    </p>
+                </section>
+
+                <!-- Section 5: Interactive Checklist -->
+                <section id="checklist" class="prose-section bg-white rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                        <div>
+                            <h2 class="font-heading text-2xl font-bold text-slate-900">5. Checklist Hành Động Thực Tế</h2>
+                            <p class="text-sm text-slate-500 mt-1">Tích chọn các mục bạn đã thực hiện — trạng thái được lưu tự động trên trình duyệt này.</p>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span id="checklist-progress-text" class="text-sm font-bold text-brand-700">0 / 6 hoàn thành (0%)</span>
+                        </div>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden mb-6">
+                        <div id="checklist-progress-bar" class="h-full bg-brand-600 w-0 transition-all duration-300"></div>
+                    </div>
+
+                    <div id="checklist-items" class="space-y-3">
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-1" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Chỉnh nhiệt độ điều hòa lên mức 26–27°C và bật quạt đảo gió.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-2" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Vệ sinh lưới lọc bụi của điều hòa và kiểm tra độ kín cửa phòng.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-3" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Tạo thói quen bật bình nóng lạnh 15–20 phút trước khi dùng và tắt trước khi tắm.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-4" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Để thức ăn nguội bớt trước khi cất vào tủ lạnh, kiểm tra gioăng cửa tủ.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-5" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Dùng ổ cắm có công tắc ngắt điện chờ cho dàn máy giải trí, sạc và thiết bị phụ.</span>
+                        </label>
+
+                        <label class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 hover:border-brand-300 hover:bg-brand-50/30 cursor-pointer transition-colors">
+                            <input type="checkbox" data-id="chk-6" class="chk-item mt-0.5 w-4 h-4 accent-brand-600 rounded cursor-pointer">
+                            <span class="text-sm text-slate-700 font-medium">Chạy công cụ tính tiền điện để ước tính kWh trước kỳ chốt số công tơ.</span>
+                        </label>
+                    </div>
+
+                    <div class="mt-5 pt-4 border-t border-slate-100 flex justify-end">
+                        <button id="reset-checklist-btn" type="button" class="text-xs font-medium text-slate-500 hover:text-rose-600 transition-colors">
+                            Đặt lại toàn bộ checklist
+                        </button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>© 2026 Tiết Kiệm AZ • Cẩm nang Giảm 30% Tiền Điện Gia Đình</div>
+            <div class="flex gap-5">
+                <a href="../index.html" class="hover:text-brand-600 font-medium">Trang chủ</a>
+                <a href="../cong-cu/tinh-tien-dien.html" class="hover:text-brand-600 font-medium">Công cụ tính tiền điện</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. Thanh tiến độ đọc trang
+        const progressBar = document.getElementById('reading-progress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = Math.min(100, Math.max(0, percent)) + '%';
+        });
+
+        // 2. Checklist lưu trạng thái qua localStorage
+        const STORAGE_KEY = 'tietkiemaz_checklist_dien_v1';
+        const checkboxes = document.querySelectorAll('.chk-item');
+        const progressText = document.getElementById('checklist-progress-text');
+        const checklistBar = document.getElementById('checklist-progress-bar');
+        const resetBtn = document.getElementById('reset-checklist-btn');
+
+        function loadChecklistState() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+                checkboxes.forEach(chk => {
+                    const id = chk.getAttribute('data-id');
+                    chk.checked = Boolean(saved[id]);
+                    toggleLabelStyle(chk);
+                });
+            } catch (e) {
+                console.warn('Không thể đọc localStorage:', e);
+            }
+            updateChecklistSummary();
+        }
+
+        function saveChecklistState() {
+            const state = {};
+            checkboxes.forEach(chk => {
+                state[chk.getAttribute('data-id')] = chk.checked;
+            });
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            } catch (e) {
+                console.warn('Không thể lưu localStorage:', e);
+            }
+        }
+
+        function toggleLabelStyle(chk) {
+            const textSpan = chk.nextElementSibling;
+            if (!textSpan) return;
+            if (chk.checked) {
+                textSpan.classList.add('line-through', 'text-slate-400');
+                textSpan.classList.remove('text-slate-700');
+            } else {
+                textSpan.classList.remove('line-through', 'text-slate-400');
+                textSpan.classList.add('text-slate-700');
+            }
+        }
+
+        function updateChecklistSummary() {
+            const total = checkboxes.length;
+            const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+            const pct = total > 0 ? Math.round((checkedCount / total) * 100) : 0;
+            progressText.textContent = `${checkedCount} / ${total} hoàn thành (${pct}%)`;
+            checklistBar.style.width = pct + '%';
+        }
+
+        checkboxes.forEach(chk => {
+            chk.addEventListener('change', () => {
+                toggleLabelStyle(chk);
+                saveChecklistState();
+                updateChecklistSummary();
+            });
+        });
+
+        resetBtn.addEventListener('click', () => {
+            checkboxes.forEach(chk => {
+                chk.checked = false;
+                toggleLabelStyle(chk);
+            });
+            saveChecklistState();
+            updateChecklistSummary();
+        });
+
+        loadChecklistState();
+    </script>
+</body>
+</html>
